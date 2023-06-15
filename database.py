@@ -3,19 +3,14 @@
 import psycopg2
 from config import host, port, database, user, password
 
-
 def create_tables() -> None:
-
-
     try:
         with psycopg2.connect(host=host, port=port, database=database, user=user, password=password) as conn:
             with conn.cursor() as cursor:
-
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY);
                 """)
                 conn.commit()
-
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS Users_seen_candidates (
                         id INTEGER NOT NULL REFERENCES Users(id),
@@ -23,17 +18,13 @@ def create_tables() -> None:
                         );
                 """)
                 conn.commit()
-
     except Exception as error:
         print(f"Ошибка при работе с PostgreSQL: {error}")
-
     finally:
         if conn:
             conn.close()
 
-
 def select_users_seen_candidates(user_id, candidate_id) -> bool:
-
     try:
         with psycopg2.connect(host=host, port=port, database=database, user=user, password=password) as conn:
             with conn.cursor() as cursor:
@@ -45,17 +36,13 @@ def select_users_seen_candidates(user_id, candidate_id) -> bool:
                     return True
                 else:
                     return False
-
     except Exception as error:
         print(f"Ошибка при работе с PostgreSQL: {error}")
-
     finally:
         if conn:
             conn.close()
 
-
 def select_users(user_id) -> bool:
-
     try:
         with psycopg2.connect(host=host, port=port, database=database, user=user, password=password) as conn:
             with conn.cursor() as cursor:
@@ -67,14 +54,11 @@ def select_users(user_id) -> bool:
                     return True
                 else:
                     return False
-
     except Exception as error:
         print(f"Ошибка при работе с PostgreSQL: {error}")
-
     finally:
         if conn:
             conn.close()
-
 
 def insert_users(user_id) -> None:
     try:
@@ -85,30 +69,23 @@ def insert_users(user_id) -> None:
                     VALUES(%s);
                 """, (user_id, ))
                 conn.commit()
-
     except Exception as error:
         print(f"Ошибка при работе с PostgreSQL: {error}")
-
     finally:
         if conn:
             conn.close()
 
-
 def insert_users_seen_candidates(user_id, candidate_id) -> None:
-
     try:
         with psycopg2.connect(host=host, port=port, database=database, user=user, password=password) as conn:
             with conn.cursor() as cursor:
-
                 cursor.execute("""
                     INSERT INTO Users_seen_candidates(id, vk_id)
                     VALUES(%s, %s);
                 """, (user_id, candidate_id))
                 conn.commit()
-
     except Exception as error:
         print(f"Ошибка при работе с PostgreSQL: {error}")
-
     finally:
         if conn:
             conn.close()
