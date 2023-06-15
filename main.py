@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
+from database import create_tables, select_users, insert_users, insert_users_seen_candidates
 from vk import *
 
 

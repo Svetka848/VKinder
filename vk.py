@@ -1,10 +1,13 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
+from typing import Type
+
 import requests
 import datetime
 from random import randrange, choice
-from config import vk_group_token, api_version
+from config import vk_group_token, api_version, access_token
 from database import select_users_seen_candidates
+
 
 def call_server(token: str = vk_group_token, version: str = api_version) -> tuple:
     url: str = 'https://api.vk.com/method/messages.getLongPollServer'
