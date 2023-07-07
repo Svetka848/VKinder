@@ -1,7 +1,9 @@
 #!/usr/bin/python
 #  -*- coding: utf-8 -*-
+import requests
+
 from database import create_tables, select_users, insert_users, insert_users_seen_candidates
-from vk import *
+from vk import call_server, get_person_info, send_message, search_candidates, send_photo, get_candidate_photo_id
 
 
 def main() -> None:

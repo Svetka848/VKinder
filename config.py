@@ -10,8 +10,8 @@ access_token = ''
 api_version = '5.131'
 
 # данные для подключения к серверу PostgreSQL:
-host = 'localhost'  # 'localhost' = '127.0.0.1'
-port = '5432'
-database = 'VKinder'
-user = 'postgres'
-password = 'Svetka848'
+host = ''
+port = ''
+database = ''
+user = ''
+password = ''
